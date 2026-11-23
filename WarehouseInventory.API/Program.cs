@@ -16,11 +16,15 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+//Apply database migrations
+await ApplyDatabaseMigrationsAsync(app);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+    
 }
 
 app.UseHttpsRedirection();
@@ -30,3 +34,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static async Task ApplyDatabaseMigrationsAsync(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<ApplicationDbContext>();
+    await dbContext.Database.MigrateAsync();
+}

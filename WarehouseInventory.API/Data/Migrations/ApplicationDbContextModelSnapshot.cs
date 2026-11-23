@@ -45,45 +45,38 @@ namespace WarehouseInventory.API.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories");
-                });
 
-            modelBuilder.Entity("WarehouseInventory.API.Models.LocalUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserName")
-                        .IsUnique();
-
-                    b.ToTable("Users");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Electronic devices and accessories",
+                            Name = "Electronics"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Office stationery and supplies",
+                            Name = "Office Supplies"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Materials used in production",
+                            Name = "Raw Materials"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Packaging materials and supplies",
+                            Name = "Packaging"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Tools and equipment used for operations",
+                            Name = "Tools and Equipment"
+                        });
                 });
 
             modelBuilder.Entity("WarehouseInventory.API.Models.Product", b =>
@@ -171,6 +164,45 @@ namespace WarehouseInventory.API.Data.Migrations
                     b.ToTable("StockTransactions");
                 });
 
+            modelBuilder.Entity("WarehouseInventory.API.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("WarehouseInventory.API.Models.Product", b =>
                 {
                     b.HasOne("WarehouseInventory.API.Models.Category", "Category")
@@ -184,7 +216,7 @@ namespace WarehouseInventory.API.Data.Migrations
 
             modelBuilder.Entity("WarehouseInventory.API.Models.StockTransaction", b =>
                 {
-                    b.HasOne("WarehouseInventory.API.Models.LocalUser", "User")
+                    b.HasOne("WarehouseInventory.API.Models.User", "User")
                         .WithMany("StockTransactions")
                         .HasForeignKey("PerformedByUserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -206,12 +238,12 @@ namespace WarehouseInventory.API.Data.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("WarehouseInventory.API.Models.LocalUser", b =>
+            modelBuilder.Entity("WarehouseInventory.API.Models.Product", b =>
                 {
                     b.Navigation("StockTransactions");
                 });
 
-            modelBuilder.Entity("WarehouseInventory.API.Models.Product", b =>
+            modelBuilder.Entity("WarehouseInventory.API.Models.User", b =>
                 {
                     b.Navigation("StockTransactions");
                 });

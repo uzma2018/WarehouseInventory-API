@@ -1,6 +1,6 @@
 ﻿namespace WarehouseInventory.API.Models
 {
-    public class LocalUser
+    public class User
     {
         public int Id { get; set; }
         public required string UserName { get; set; }

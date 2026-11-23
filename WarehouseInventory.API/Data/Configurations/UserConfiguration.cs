@@ -4,9 +4,9 @@ using WarehouseInventory.API.Models;
 
 namespace WarehouseInventory.API.Data.Configurations
 {
-    public class LocalUserConfiguration : IEntityTypeConfiguration<LocalUser>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<LocalUser> modelBuilder)
+        public void Configure(EntityTypeBuilder<User> modelBuilder)
         {
             modelBuilder.HasIndex(u => u.UserName).IsUnique();
             modelBuilder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
