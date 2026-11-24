@@ -9,16 +9,8 @@ namespace WarehouseInventory.API.Data.Configurations
         public void Configure(EntityTypeBuilder<StockTransaction> modelBuilder)
         {
 
-            modelBuilder.Property(u => u.QuantityChange).IsRequired();
-
-            modelBuilder.Property(u => u.TransactionDateUtc).IsRequired();
-
-            modelBuilder.Property(u => u.ProductId).IsRequired();
-
-            modelBuilder.Property(u => u.PerformedByUserId).IsRequired();
-
             modelBuilder.Property(u => u.TransactionType).HasConversion<string>()
-                .IsRequired().HasMaxLength(30);
+                .HasMaxLength(30);
 
 
             modelBuilder.HasOne(u=>u.Product)

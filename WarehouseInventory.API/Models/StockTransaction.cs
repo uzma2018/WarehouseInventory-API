@@ -8,7 +8,7 @@ namespace WarehouseInventory.API.Models
         [NotZero]
         public required int QuantityChange { get; set; }
         public required TransactionType TransactionType { get; set; }
-        public required DateTime TransactionDateUtc { get; set; } = DateTime.UtcNow;
+        public required DateTime TransactionDateUtc { get; set; }
         public required int ProductId { get; set; }
         public Product Product { get; set; } = default!;
         public required int PerformedByUserId { get; set; }

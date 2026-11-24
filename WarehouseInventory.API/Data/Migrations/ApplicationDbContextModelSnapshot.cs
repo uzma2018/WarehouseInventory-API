@@ -30,6 +30,9 @@ namespace WarehouseInventory.API.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -38,6 +41,9 @@ namespace WarehouseInventory.API.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -50,30 +56,35 @@ namespace WarehouseInventory.API.Data.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAtUtc = new DateTime(2026, 9, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Electronic devices and accessories",
                             Name = "Electronics"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAtUtc = new DateTime(2026, 9, 25, 1, 10, 5, 0, DateTimeKind.Utc),
                             Description = "Office stationery and supplies",
                             Name = "Office Supplies"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAtUtc = new DateTime(2026, 10, 2, 2, 13, 25, 0, DateTimeKind.Utc),
                             Description = "Materials used in production",
                             Name = "Raw Materials"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAtUtc = new DateTime(2026, 10, 10, 1, 15, 2, 0, DateTimeKind.Utc),
                             Description = "Packaging materials and supplies",
                             Name = "Packaging"
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAtUtc = new DateTime(2026, 10, 20, 1, 20, 5, 0, DateTimeKind.Utc),
                             Description = "Tools and equipment used for operations",
                             Name = "Tools and Equipment"
                         });
@@ -92,10 +103,6 @@ namespace WarehouseInventory.API.Data.Migrations
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -119,6 +126,9 @@ namespace WarehouseInventory.API.Data.Migrations
 
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -189,6 +199,9 @@ namespace WarehouseInventory.API.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .IsRequired()

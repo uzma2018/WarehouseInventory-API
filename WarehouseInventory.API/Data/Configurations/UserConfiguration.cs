@@ -9,15 +9,13 @@ namespace WarehouseInventory.API.Data.Configurations
         public void Configure(EntityTypeBuilder<User> modelBuilder)
         {
             modelBuilder.HasIndex(u => u.UserName).IsUnique();
-            modelBuilder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
+            modelBuilder.Property(u => u.UserName).HasMaxLength(50);
 
-            modelBuilder.Property(u => u.Name).IsRequired().HasMaxLength(100);
+            modelBuilder.Property(u => u.Name).HasMaxLength(100);
 
-            modelBuilder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(500);
+            modelBuilder.Property(u => u.PasswordHash).HasMaxLength(500);
 
-            modelBuilder.Property(u => u.Role).IsRequired().HasMaxLength(50);
-
-            modelBuilder.Property(u => u.CreatedAtUtc).IsRequired();
+            modelBuilder.Property(u => u.Role).HasMaxLength(50);
 
         }
     }
