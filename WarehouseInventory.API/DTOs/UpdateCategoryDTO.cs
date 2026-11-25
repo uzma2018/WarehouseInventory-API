@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WarehouseInventory.API.Models;
 
 namespace WarehouseInventory.API.DTOs
 {
@@ -7,6 +6,7 @@ namespace WarehouseInventory.API.DTOs
     {
         [Required]
         [MaxLength(100)]
+        [RegularExpression(@".*\S.*", ErrorMessage = "Name cannot contain only whitespace.")]
         public string Name { get; set; } = string.Empty;
         [MaxLength(500)]
         public string? Description { get; set; }

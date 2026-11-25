@@ -3,6 +3,7 @@ using Scalar.AspNetCore;
 using WarehouseInventory.API.Data;
 using WarehouseInventory.API.DTOs;
 using WarehouseInventory.API.Models;
+using WarehouseInventory.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +14,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddAutoMapper(o=>
 {
     o.CreateMap<Category,CategoryDTO>().ReverseMap();
-    o.CreateMap<CreateCategoryDTO,CategoryDTO>().ReverseMap();
-    o.CreateMap<UpdateCategoryDTO,CategoryDTO>().ReverseMap();
 });
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
