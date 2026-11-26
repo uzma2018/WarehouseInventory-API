@@ -15,9 +15,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+
 builder.Services.AddAutoMapper(o=>
 {
     o.CreateMap<Category,CategoryDTO>().ReverseMap();
+
+    o.CreateMap<Product, ProductDTO>().ReverseMap();
 });
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

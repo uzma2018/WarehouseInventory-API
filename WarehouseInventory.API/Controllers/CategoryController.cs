@@ -32,11 +32,6 @@ namespace WarehouseInventory.API.Controllers
         [HttpPost]
         public async Task<ActionResult<CategoryDTO>> CreateCategory(CreateCategoryDTO createCategory)
         {
-            if(createCategory == null)
-            {
-                return BadRequest("Category data is required");
-            }
-
             var result = await _categoryService.CreateAsync(createCategory);
 
             var categoryDto = result.CategoryDTO;
@@ -51,7 +46,7 @@ namespace WarehouseInventory.API.Controllers
                 case CategoryCreateStatus.Success:
                     return CreatedAtAction(
                         nameof(GetCategory),
-                        new { id = categoryDto.Id },
+                        new { id = categoryDto!.Id },
                         categoryDto);
 
                 default:
@@ -64,11 +59,6 @@ namespace WarehouseInventory.API.Controllers
             if (id <= 0) 
             {
                 return BadRequest("Category ID must be greater than zero");
-            }
-
-            if(updateCategory == null)
-            {
-                return BadRequest("Category data is required");
             }
 
             var result = await _categoryService.UpdateAsync(id, updateCategory);

@@ -20,13 +20,13 @@ namespace WarehouseInventory.API.Services
 
         public async Task<IEnumerable<CategoryDTO>> GetAllAsync()
         {
-            var categories = await _db.Categories.ToListAsync();
+            var categories = await _db.Categories.AsNoTracking().ToListAsync();
             return _mapper.Map<List<CategoryDTO>>(categories);
         }
 
         public async Task<CategoryDTO?> GetByIdAsync(int id)
         {
-            var category = await _db.Categories.FindAsync(id);
+            var category = await _db.Categories.AsNoTracking().FirstOrDefaultAsync(u=>u.Id == id);
             if (category == null)
             {
                 return null;

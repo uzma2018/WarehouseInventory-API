@@ -2,7 +2,7 @@
 
 namespace WarehouseInventory.API.CustomAttributes
 {
-    public class NotZeroAttribute : ValidationAttribute
+    public sealed class NotZeroAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid
             (object? value, ValidationContext validationContext)

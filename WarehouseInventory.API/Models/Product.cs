@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WarehouseInventory.API.Models;
 
 namespace WarehouseInventory.API.Models
 {
